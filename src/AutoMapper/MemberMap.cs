@@ -85,6 +85,8 @@ namespace AutoMapper
             ChainSourceMembers(source, memberMap.DestinationType, destinationMember);
         MemberInfo IValueResolver.GetSourceMember(MemberMap memberMap) => SourceMembers[0];
         Type IValueResolver.ResolvedType => SourceMembers[^1].GetMemberType();
+        public string SourceMemberName => null;
+        public LambdaExpression ProjectToExpression => null;
     }
     public readonly struct ValueTransformerConfiguration
     {

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using AutoMapper.CollectionExtensions;
 using AutoMapper.Execution;
 using AutoMapper.Internal;
 namespace AutoMapper.QueryableExtensions.Impl

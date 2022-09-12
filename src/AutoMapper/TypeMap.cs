@@ -14,6 +14,8 @@ namespace AutoMapper
     using Features;
     using QueryableExtensions.Impl;
     using Internal;
+    using AutoMapper.CollectionExtensions;
+
     /// <summary>
     /// Main configuration object holding all mapping configuration for a source and destination type
     /// </summary>

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using AutoMapper.CollectionExtensions;
 using AutoMapper.Configuration;
 using AutoMapper.Configuration.Conventions;
 using AutoMapper.Execution;

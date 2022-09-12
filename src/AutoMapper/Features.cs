@@ -1,4 +1,5 @@
-﻿using AutoMapper.Internal;
+﻿using AutoMapper.CollectionExtensions;
+using AutoMapper.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;

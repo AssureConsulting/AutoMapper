@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using AutoMapper.CollectionExtensions;
+
 namespace AutoMapper.Internal
 {
     /// <summary>

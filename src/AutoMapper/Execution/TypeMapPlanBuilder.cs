@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+
 namespace AutoMapper.Execution
 {
     using static Expression;
@@ -399,8 +401,8 @@ namespace AutoMapper.Execution
         Expression GetExpression(MemberMap memberMap, Expression source, Expression destination, Expression destinationMember);
         MemberInfo GetSourceMember(MemberMap memberMap);
         Type ResolvedType { get; }
-        string SourceMemberName => null;
-        LambdaExpression ProjectToExpression => null;
+        string SourceMemberName { get; }
+        LambdaExpression ProjectToExpression { get; }
     }
     public abstract class LambdaValueResolver
     {
@@ -411,6 +413,8 @@ namespace AutoMapper.Execution
     public class FuncResolver : LambdaValueResolver, IValueResolver
     {
         public FuncResolver(LambdaExpression lambda) : base(lambda) { }
+        public string SourceMemberName => null;
+        public LambdaExpression ProjectToExpression => null;
         public Expression GetExpression(MemberMap memberMap, Expression source, Expression destination, Expression destinationMember) =>
             Lambda.ConvertReplaceParameters(source, destination, destinationMember, ContextParameter);
         public MemberInfo GetSourceMember(MemberMap _) => null;
@@ -431,6 +435,7 @@ namespace AutoMapper.Execution
         }
         public MemberInfo GetSourceMember(MemberMap _) => Lambda.GetMember();
         public LambdaExpression ProjectToExpression => Lambda;
+        public string SourceMemberName => null;
     }
     public abstract class ValueResolverConfig
     {
@@ -455,6 +460,7 @@ namespace AutoMapper.Execution
     {
         public ValueConverter(Type concreteType, Type interfaceType) : base(concreteType, interfaceType) => _instance = ServiceLocator(concreteType);
         public ValueConverter(object instance, Type interfaceType) : base(instance, interfaceType) { }
+        public LambdaExpression ProjectToExpression => null;
         public Expression GetExpression(MemberMap memberMap, Expression source, Expression _, Expression destinationMember)
         {
             var iResolverTypeArgs = InterfaceType.GenericTypeArguments;
@@ -477,6 +483,7 @@ namespace AutoMapper.Execution
     {
         public ClassValueResolver(Type concreteType, Type interfaceType) : base(concreteType, interfaceType) { }
         public ClassValueResolver(object instance, Type interfaceType) : base(instance, interfaceType) { }
+        public LambdaExpression ProjectToExpression => null;
         public Expression GetExpression(MemberMap memberMap, Expression source, Expression destination, Expression destinationMember)
         {
             var typeMap = memberMap.TypeMap;
